@@ -14,7 +14,8 @@ public class CharacterControl : MonoBehaviour
 
     public GameObject guiTest;
 
-    public static TextMeshProUGUI selected;
+    //public static TextMeshProUGUI selected;
+    public  TextMeshProUGUI selected;
     private void Start()
     {
         guiTest = GameObject.Find("guiTest");
@@ -32,9 +33,17 @@ public class CharacterControl : MonoBehaviour
         UpdateGUI(villager);
     }
 
+    private void Update()
+    {
+        if (SelectedVillager != null)
+        {
+            selected.SetText(SelectedVillager.CanOpen().ToString());
+        }
+    }
+
     public static void UpdateGUI(Villager villager)
     {
-        selected.SetText(villager.CanOpen().ToString());
+       // selected.SetText(villager.CanOpen().ToString());
     }
     
 }

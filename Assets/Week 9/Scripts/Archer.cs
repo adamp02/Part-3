@@ -7,6 +7,10 @@ public class Archer : Villager
     public GameObject arrowPrefab;
     public Transform spawnPoint;
 
+    public override string ToString()
+    {
+        return "I'm an Archer";//base.ToString();
+    }
 
     public override ChestType CanOpen()
     {
