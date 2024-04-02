@@ -21,12 +21,6 @@ public class Pickup : MonoBehaviour
         playerObj = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
-    private void FixedUpdate()
-    {
-        
-    }
-
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         playerObj.SendMessage("MsgTest");

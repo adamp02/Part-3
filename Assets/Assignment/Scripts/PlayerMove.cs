@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayerMove : MonoBehaviour
@@ -24,12 +25,35 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
+
+        setupPlayer();
+    }
+
+    public void setupPlayer()
+    {
+        health = PlayerManager.playerStartingHealth;
+        hunger = PlayerManager.playerStartingHunger;
+        speed = PlayerManager.playerStartingSpeed;
+
+        healthText.SetText("Health: " + health + " / " + maxHealth);
+        hungerText.SetText("Hunger: " + hunger + " / " + maxHunger);
     }
 
     private void Update()
     {
         direction.x = Input.GetAxis("Horizontal");
         direction.y = Input.GetAxis("Vertical");
+
+        if (Input.GetKeyDown("x"))
+        {
+            GetPosition(this.transform);
+        }
+
+        if (Input.GetKeyDown("r"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
     }
 
     private void FixedUpdate()
@@ -80,6 +104,12 @@ public class PlayerMove : MonoBehaviour
     {
         Debug.Log("You got a speedboost! Speed increased by " + speedIncrease + ".");
         speed += speedIncrease;
+    }
+
+
+    public static void GetPosition(Transform t)
+    {
+        Debug.Log("The player's current position is " + t.position + ".");
     }
 
 }
