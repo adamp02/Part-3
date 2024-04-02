@@ -22,5 +22,8 @@ public class SliderClock : MonoBehaviour
         timer += Time.deltaTime * speed;
         timer = timer % 60;
         slider.value = timer;
+
+        Debug.Log(timer);
+
     }
 }
