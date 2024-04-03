@@ -6,7 +6,6 @@ using TMPro;
 
 public class PlayerMove : MonoBehaviour
 {
-    Rigidbody2D rigidbody;
 
     //player stats
     public float speed = 5f;
@@ -20,11 +19,12 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI hungerText;
 
-    Vector2 direction;
+    Vector2 playerPos;
+    Rigidbody2D playerRB;
 
     void Start()
     {
-        rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        playerRB = gameObject.GetComponent<Rigidbody2D>();
 
         setupPlayer();
     }
@@ -41,8 +41,8 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        direction.x = Input.GetAxis("Horizontal");
-        direction.y = Input.GetAxis("Vertical");
+        playerPos.x = Input.GetAxis("Horizontal");
+        playerPos.y = Input.GetAxis("Vertical");
 
         if (Input.GetKeyDown("x"))
         {
@@ -58,8 +58,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        rigidbody.AddForce(direction * speed * Time.deltaTime);
+        playerRB.AddForce(playerPos * speed * Time.deltaTime);
     }
 
 
